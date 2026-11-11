@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>让签到自己跑：GitHub Actions 自动签到记 — Haha 的小站</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="../index.html">← 回首页</a>
+  <article class="post">
+    <h1>让签到自己跑：GitHub Actions 自动签到记</h1>
+    <p class="meta">2026-11-11 · 技术 / 自动化</p>
+    <p>GLaDOS 每天要签到，手动点不难，难的是<strong>每天都记得点</strong>。这种重复劳动就该交给机器。</p>
+    <p><strong>方案：</strong>用一个现成的开源签到仓库，fork 到自己的 GitHub，把登录 Cookie 存进仓库的 Actions Secret（<code>GLADOS_COOKIES</code>），工作流每天北京时间 09:18 和 12:18 自动跑两次。</p>
+    <p><strong>最折腾的一步是取 Cookie。</strong>它藏在浏览器的会话里，还是 HttpOnly 的，普通办法读不到。最后是在手机 Firefox 里装了 Cookie-Editor 插件，从已登录的页面把那对会话 Cookie 导出，再按仓库要求的 JSON 格式填进 Secret——一次提交还悄悄失败了，第二次才存上。所以：<strong>提交完一定要回列表页确认它真的在</strong>，别信“点了就等于存了”。</p>
+    <p><strong>第一次运行：</strong>手动触发，21 秒跑完，日志原话“签到成功”，+6 积分。</p>
+    <p><strong>但故事没完。</strong>第二天复查发现：两次定时触发居然都没跑——工作流是启用的、时间也没写错，是 GitHub 那边把定时触发给漏了。好在第一次手动运行把当天的签到覆盖了，没损失。这件事教会我两条：</p>
+    <ul>
+      <li>定时任务不能“设完就不管”，要有人（或哨兵脚本）定期核对它真的跑了；</li>
+      <li>所以我又加了一个异常监控：每天中午后检查当天有没有成功记录，正常就安静，失败或没跑才来提醒我。</li>
+    </ul>
+    <p>自动化的终点不是“不用管了”，是“出问题时它会自己喊你”。</p>
+  </article>
+</main>
+<footer class="site"><div class="wrap">© 2026 Haha · Haha 的小站</div></footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我给自己搭了一台 VPN：从零到“有用了” — Haha 的小站</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<main class="wrap">
+  <a class="back" href="../index.html">← 回首页</a>
+  <article class="post">
+    <h1>我给自己搭了一台 VPN：从零到“有用了”</h1>
+    <p class="meta">2026-11-11 · 技术 / 服务器</p>
+    <p>成品先放前面：一台 AWS Lightsail 服务器（美国俄亥俄）+ 开源脚本 fscarmen/sing-box + 手机上的 Clash Mi，订阅一导入就能用，日常刷网页、看视频都够。</p>
+    <p><strong>为什么不用现成的？</strong>自己的服务器，配置、密钥、流量都在自己手里，不用担心哪天服务商跑路或者涨价。成本也低，走的是免费计划的额度。</p>
+    <p><strong>过程里最值得记的一坑：Snell。</strong>脚本默认装了一堆协议，其中一个叫 Snell 的节点用的是第 6 版协议，而 Clash Mi 的内核不认这个版本。结果就是：整个配置因为这一个坏节点直接启动失败，App 弹错 <code>snell version error: 6</code>。</p>
+    <p>排查思路供参考：</p>
+    <ul>
+      <li>先看报错原文——它其实把出问题的节点名字都写出来了；</li>
+      <li>把订阅文件拉下来逐个核对节点，定位到 Snell 那一条；</li>
+      <li>临时修法：删掉这个节点及其在分组里的引用，配置立刻能用；</li>
+      <li>长期修法：回服务器用脚本自带的协议管理把 Snell 整个卸载，再重新拉订阅验证，确认一个坏节点都不剩。</li>
+    </ul>
+    <p><strong>教训：</strong>一键脚本图省事，但“默认全装”不等于“全都能用”。客户端认哪些协议版本，先查清楚，再决定装哪些。少装一个用不上的，比多装一个坏全锅的强。</p>
+    <p>最后手机上连通、回了一句“有用了”——这三个字，就是这篇文章的标题来源。</p>
+  </article>
+</main>
+<footer class="site"><div class="wrap">© 2026 Haha · Haha 的小站</div></footer>
+</body>
+</html>
