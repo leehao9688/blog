@@ -1,0 +1,28 @@
+:root{
+  --bg:#fffaf3; --card:#ffffff; --ink:#2b2118; --muted:#8a7a68;
+  --accent:#f59e0b; --accent2:#ea580c; --line:#f0e2cf; --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.75}
+a{color:var(--accent2);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+header.site{padding:44px 0 8px;text-align:center}
+.avatar{font-size:52px}
+h1.blogname{font-size:30px;letter-spacing:1px}
+.tagline{color:var(--muted);margin-top:6px;font-size:15px}
+nav.main{display:flex;gap:22px;justify-content:center;padding:16px 0;border-bottom:1px solid var(--line);margin-bottom:28px}
+nav.main a{color:var(--ink);font-weight:600}
+.post-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;margin-bottom:18px}
+.post-card h2{font-size:21px;margin-bottom:6px}
+.post-card h2 a{color:var(--ink)}
+.meta{color:var(--muted);font-size:13px;margin-bottom:8px}
+.excerpt{color:#57493a;font-size:15px}
+.tag{display:inline-block;background:#fef3c7;color:#92400e;border-radius:999px;padding:1px 10px;font-size:12px;margin-right:6px}
+article.post{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px 30px 36px;margin-bottom:24px}
+article.post h1{font-size:26px;line-height:1.4;margin-bottom:6px}
+article.post p{margin:12px 0}
+article.post ul{margin:10px 0 10px 22px}
+code{background:#fef3c7;padding:1px 6px;border-radius:6px;font-size:90%}
+.back{display:inline-block;margin:20px 0}
+footer.site{color:var(--muted);text-align:center;font-size:13px;padding:26px 0 40px;border-top:1px solid var(--line);margin-top:10px}
